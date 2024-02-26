@@ -19,6 +19,8 @@
 
 // clang-format off
 bool user_led_enabled;
+HSV hsv;
+
 
 enum layers {
     SWOLEMAKDH_BASE,
@@ -75,13 +77,39 @@ void keyboard_post_init_user(void) {
     user_led_enabled = true;
 }
 
+void rgb_hsv_updata_user(void) {
+    rgb_matrix_sethsv_noeeprom(rgb_matrix_config.hsv.h, rgb_matrix_config.hsv.s, rgb_matrix_config.hsv.v);
+}
 
 // [Process User Input] ------------------------------------------------------//
 bool process_record_user(uint16_t keycode, keyrecord_t * record) {
     switch (keycode) {
-
-        // Handle RGB Changes sans eeprom - necessary due to the layer dependent RGB color
-        // changes in matrix_scan_user
+        case RGB_VAI:
+            if (record -> event.pressed) {
+                if ((RGB_MATRIX_MAXIMUM_BRIGHTNESS - rgb_matrix_get_val()) >= RGB_MATRIX_VAL_STEP) {
+                    rgb_matrix_config.hsv.v += RGB_MATRIX_VAL_STEP;
+                }
+                else if (rgb_matrix_get_val() == 0){
+                     rgb_matrix_config.hsv.v += (RGB_MATRIX_VAL_STEP - 1);
+                }
+                else {
+                    rgb_matrix_config.hsv.v = RGB_MATRIX_MAXIMUM_BRIGHTNESS;
+                }
+                rgb_hsv_updata_user();
+            }
+            return false;
+        case RGB_VAD:
+            if (record -> event.pressed) {
+                if (rgb_matrix_get_val() >= RGB_MATRIX_VAL_STEP) {
+                    rgb_matrix_config.hsv.v -= RGB_MATRIX_VAL_STEP;
+                }
+                else {
+                    rgb_matrix_config.hsv.v = 0;
+                }
+                rgb_hsv_updata_user();
+            }
+            return false;
+        // Handle RGB Changes sans eeprom - necessary due to the layer dependent RGB color changes in matrix_scan_user
         case RGB_TOG:
             if (record -> event.pressed) {
                 // Toggle matrix on key press
@@ -106,21 +134,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t * record) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
         case _FN1:
-            rgb_matrix_sethsv_noeeprom(HSV_RED);
+            rgb_matrix_sethsv_noeeprom(0,255,rgb_matrix_config.hsv.v);
             break;
         case _FN2:
-            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+            rgb_matrix_sethsv_noeeprom(86,255,rgb_matrix_config.hsv.v);
             break;
         case _FN3:
-            rgb_matrix_sethsv_noeeprom(HSV_BLUE);
+            rgb_matrix_sethsv_noeeprom(170,255,rgb_matrix_config.hsv.v);
             break;
         default: // for any other layers, or the default layer
-            rgb_matrix_sethsv_noeeprom(HSV_WHITE);
+            rgb_matrix_sethsv_noeeprom(0,0,rgb_matrix_config.hsv.v);
             break;
     }
   return state;
 }
-
 // clang-format on
 
 /*
