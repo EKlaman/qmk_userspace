@@ -1,6 +1,6 @@
 VIA_ENABLE = yes
 VIAL_ENABLE = yes
-VIALRGB_ENABLE = yes
-
-VPATH += keyboards/keychron/common
-SRC += keychron_common.c
+VIALRGB_ENABLE = no
+RGBLIGHT_ENABLE = no
+RGB_MATRIX_ENABLE = no
+DIP_SWITCH_ENABLE = yes

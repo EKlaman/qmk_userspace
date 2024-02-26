@@ -15,12 +15,12 @@
  */
 
 #include QMK_KEYBOARD_H
-#include "keychron_common.h"
+#include "keymap_swedish.h"
 
 // clang-format off
 
 enum layers {
-    MAC_BASE,
+    SWOLEMAKDH_BASE,
     WIN_BASE,
     _FN1,
     _FN2,
@@ -28,44 +28,100 @@ enum layers {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [MAC_BASE] = LAYOUT_iso_62(
-        KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,
-        KC_TAB,  KC_Q,     KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,
-        KC_CAPS, KC_A,     KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,  KC_NUHS,  KC_ENT,
-        KC_LSFT, KC_NUBS,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT,
-        KC_LCTL, KC_LOPTN, KC_LCMD,                            KC_SPC,                             KC_RCMD,  MO(_FN1), MO(_FN3), KC_RCTL),
+    [SWOLEMAKDH_BASE] = LAYOUT_iso_62(
+        KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,       SE_EQL,    KC_7,    KC_8,    KC_9,     KC_0,     SE_MINS,  KC_BSPC,
+        KC_TAB,  KC_Q,     KC_W,    KC_F,    KC_P,    KC_B,    SE_ARNG,    KC_J,      KC_L,    KC_U,    KC_Y,     SE_SCLN,  SE_SLSH,
+        KC_CAPS, KC_A,     KC_R,    KC_S,    KC_T,    KC_G,    SE_ADIA,    KC_M,      KC_N,    KC_E,    KC_I,     KC_O,     SE_QUOT,  KC_ENT,
+        KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_D,    KC_V,    SE_ODIA,    SE_BSLS,   KC_K,    KC_H,    SE_COMM,  SE_DOT,             KC_RSFT,
+        KC_LCTL, KC_LGUI,  KC_LALT,                            KC_SPC,                                  KC_RALT,  MO(_FN1), MO(_FN2), MO(_FN3)),
 
     [WIN_BASE] = LAYOUT_iso_62(
         KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,  KC_EQL,   KC_BSPC,
         KC_TAB,  KC_Q,     KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,  KC_RBRC,
         KC_CAPS, KC_A,     KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,  KC_NUHS,  KC_ENT,
         KC_LSFT, KC_NUBS,  KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,   KC_SLSH,            KC_RSFT,
-        KC_LCTL, KC_LGUI,  KC_LALT,                            KC_SPC,                             KC_RALT,  MO(_FN2), MO(_FN3), KC_RCTL),
+        KC_LCTL, KC_LGUI,  KC_LALT,                            KC_SPC,                             KC_RALT,  MO(_FN1), MO(_FN2), MO(_FN3)),
 
     [_FN1] = LAYOUT_iso_62(
-        KC_GRV,  KC_BRID,  KC_BRIU, KC_MCTL, KC_LPAD, RGB_VAD, RGB_VAI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  RGB_MOD,
-        RGB_TOG, RGB_MOD,  RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, KC_INS,   KC_PGUP,  KC_HOME,
-        _______, RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, KC_UP,   KC_SNAP, KC_PGDN,  KC_END,   _______,  _______,
-        _______, _______,  _______, _______, _______, _______, _______, NK_TOGG, KC_LEFT, KC_DOWN, KC_RIGHT, KC_DEL,   _______,
-        _______, _______,  _______,                            _______,                            _______,  _______,  _______,  _______),
+        SE_ACUT, KC_BRID, KC_BRIU, KC_NO,   KC_NO,    _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,
+        _______, _______, _______, _______, _______,  _______, _______, _______, KC_APP,  KC_SCRL, KC_INS,   KC_PGUP,  KC_HOME,
+        _______, _______, _______, _______, _______,  _______, _______, _______, KC_UP,   KC_PSCR, KC_PGDN,  KC_END,   _______,  _______,
+        _______, _______, _______, _______, _______,  _______, _______, NK_TOGG, KC_LEFT, KC_DOWN, KC_RIGHT, KC_DEL,             _______,
+        _______, _______, _______,                             _______,                            _______,  _______,  _______,  _______),
 
     [_FN2] = LAYOUT_iso_62(
-        KC_GRV,  KC_BRID,  KC_BRIU, KC_TASK, KC_FLXP, RGB_VAD, RGB_VAI, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  RGB_MOD,
-        RGB_TOG, RGB_MOD,  RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, KC_APP,  KC_SCRL, KC_INS,   KC_PGUP,  KC_HOME,
-        _______, RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, KC_UP,   KC_PSCR, KC_PGDN,  KC_END,   _______,  _______,
-        _______, _______,  _______, _______, _______, _______, _______, NK_TOGG, KC_LEFT, KC_DOWN, KC_RIGHT, KC_DEL,             _______,
-        _______, _______,  _______,                            _______,                            _______,  _______,  _______,  _______),
+        _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______,
+        _______, _______, _______, _______, _______, _______,  _______, _______, _______, _______, _______, _______,          _______,
+        _______, _______, _______,                             _______,                            _______, _______, _______, _______),
+
 
     [_FN3] = LAYOUT_iso_62(
-        KC_TILD, KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   _______,
+        KC_TILD, KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   RGB_MOD,
         RGB_TOG, RGB_MOD,  RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______,  _______,  _______,
         _______, RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______,  _______,  _______,  _______,
-        _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  _______,            _______,
-        _______, _______,  _______,                            _______,                            _______,  _______,  _______,  _______)
+        _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_UP,              _______,
+        _______, _______,  _______,                            _______,                            KC_LEFT,  KC_DOWN,  KC_RIGHT, _______)
 };
 
+
+// [Post Init] --------------------------------------------------------------//
+void keyboard_post_init_user(void) {
+    // Set RGB to known state
+    rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
+    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+    user_led_enabled = true;
+}
+
+/*
+// [Process User Input] ------------------------------------------------------//
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+      // Handle RGB Changes sans eeprom - necessary due to the layer dependent RGB color
+      // changes in marrix_scan_user
+      case RGB_TOG:
+          if (record->event.pressed) {
+              // Toggle matrix on key press
+              user_led_enabled ? rgb_matrix_disable_noeeprom() : rgb_matrix_enable_noeeprom();
+              // Toggle boolean flag
+              user_led_enabled = !user_led_enabled;
+          }
+          return false;
+      default:
+          // Use process_record_keymap to reset timer on all other keypresses to awaken from idle.
+          if (record->event.pressed) {
+              // Restore LEDs if they are enabled by user
+              if (user_led_enabled) {
+                  rgb_matrix_enable_noeeprom();
+              }
+          }
+          return true;
+    }
+}
+*/
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+        case _FN1:
+            rgb_matrix_sethsv_noeeprom(HSV_RED);
+            break;
+        case _FN2:
+            rgb_matrix_sethsv_noeeprom(HSV_GREEN);
+            break;
+        case _FN3:
+            rgb_matrix_sethsv_noeeprom(HSV_BLUE);
+            break;
+        default: // for any other layers, or the default layer
+            rgb_matrix_sethsv_noeeprom(HSV_OFF);
+            break;
+    }
+  return state;
+}
+*/
 // clang-format on
 
+/*
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (!process_record_keychron(keycode, record)) {
         return false;
@@ -73,3 +129,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 }
+*/
