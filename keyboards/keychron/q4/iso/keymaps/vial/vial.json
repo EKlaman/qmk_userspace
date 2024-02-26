@@ -2,7 +2,7 @@
   "name": "Keychron Q4",
   "vendorId": "0x3434",
   "productId": "0x0142",
-  "lighting": "",
+  "lighting": "rgb_matrix",
   "matrix": {"rows": 5, "cols": 14},
   "customKeycodes": [],
   "layouts": {

@@ -18,6 +18,7 @@
 #include "keymap_swedish.h"
 
 // clang-format off
+bool user_led_enabled;
 
 enum layers {
     SWOLEMAKDH_BASE,
@@ -59,8 +60,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FN3] = LAYOUT_iso_62(
         KC_TILD, KC_F1,    KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,   KC_F11,   KC_F12,   RGB_MOD,
-        RGB_TOG, RGB_MOD,  RGB_VAI, RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______,  _______,  _______,
-        _______, RGB_RMOD, RGB_VAD, RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______,  _______,  _______,  _______,
+        RGB_TOG, RGB_VAI,  RGB_HUI, RGB_SAI, RGB_SPI, _______, _______, _______, _______, _______, _______,  _______,  _______,
+        _______, RGB_VAD,  RGB_HUD, RGB_SAD, RGB_SPD, _______, _______, _______, _______, _______, _______,  _______,  _______,  _______,
         _______, _______,  _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_UP,              _______,
         _______, _______,  _______,                            _______,                            KC_LEFT,  KC_DOWN,  KC_RIGHT, _______)
 };
@@ -70,36 +71,37 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void keyboard_post_init_user(void) {
     // Set RGB to known state
     rgb_matrix_mode_noeeprom(RGB_MATRIX_SOLID_COLOR);
-    rgb_matrix_sethsv_noeeprom(HSV_OFF);
+    rgb_matrix_sethsv_noeeprom(HSV_WHITE);
     user_led_enabled = true;
 }
 
-/*
+
 // [Process User Input] ------------------------------------------------------//
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+bool process_record_user(uint16_t keycode, keyrecord_t * record) {
     switch (keycode) {
-      // Handle RGB Changes sans eeprom - necessary due to the layer dependent RGB color
-      // changes in marrix_scan_user
-      case RGB_TOG:
-          if (record->event.pressed) {
-              // Toggle matrix on key press
-              user_led_enabled ? rgb_matrix_disable_noeeprom() : rgb_matrix_enable_noeeprom();
-              // Toggle boolean flag
-              user_led_enabled = !user_led_enabled;
-          }
-          return false;
-      default:
-          // Use process_record_keymap to reset timer on all other keypresses to awaken from idle.
-          if (record->event.pressed) {
-              // Restore LEDs if they are enabled by user
-              if (user_led_enabled) {
-                  rgb_matrix_enable_noeeprom();
-              }
-          }
-          return true;
+
+        // Handle RGB Changes sans eeprom - necessary due to the layer dependent RGB color
+        // changes in matrix_scan_user
+        case RGB_TOG:
+            if (record -> event.pressed) {
+                // Toggle matrix on key press
+                user_led_enabled ? rgb_matrix_disable_noeeprom() : rgb_matrix_enable_noeeprom();
+                // Toggle boolean flag
+                user_led_enabled = !user_led_enabled;
+            }
+            return false;
+        default:
+            // Use process_record_keymap to reset timer on all other keypresses to awaken from idle.
+            if (record -> event.pressed) {
+                // Restore LEDs if they are enabled by user
+                if (user_led_enabled) {
+                    rgb_matrix_enable_noeeprom();
+                }
+            }
+            return true;
     }
 }
-*/
+
 
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
@@ -113,12 +115,12 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgb_matrix_sethsv_noeeprom(HSV_BLUE);
             break;
         default: // for any other layers, or the default layer
-            rgb_matrix_sethsv_noeeprom(HSV_OFF);
+            rgb_matrix_sethsv_noeeprom(HSV_WHITE);
             break;
     }
   return state;
 }
-*/
+
 // clang-format on
 
 /*

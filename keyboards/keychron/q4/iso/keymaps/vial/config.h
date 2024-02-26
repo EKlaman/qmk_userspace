@@ -29,7 +29,8 @@
 
 #ifdef RGB_MATRIX_ENABLE
 #   define RGB_MATRIX_DISABLE_KEYCODES // disables control of rgb matrix by keycodes (must use code functions to control the feature)
-#   define RGB_MATRIX_MAXIMUM_BRIGHTNESS 150    // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+#   define RGB_MATRIX_MAXIMUM_BRIGHTNESS 200    // limits maximum brightness of LEDs to 150 out of 255. Higher may cause the controller to crash.
+#   define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Sets the default brightness value, if none has been set
 #   define RGB_MATRIX_HUE_STEP 32
 #   define RGB_MATRIX_SAT_STEP 64
 #   define RGB_MATRIX_VAL_STEP 64
