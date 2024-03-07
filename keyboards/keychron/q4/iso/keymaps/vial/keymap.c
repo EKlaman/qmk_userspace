@@ -23,7 +23,7 @@ HSV hsv;
 
 
 enum layers {
-    SWOLEMAKDH_BASE,
+    COLEMAKDH_BASE,
     WIN_BASE,
     _FN1,
     _FN2,
@@ -31,7 +31,7 @@ enum layers {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [SWOLEMAKDH_BASE] = LAYOUT_iso_62(
+    [COLEMAKDH_BASE] = LAYOUT_iso_62(
         KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,       SE_EQL,    KC_7,    KC_8,    KC_9,     KC_0,     SE_MINS,  KC_BSPC,
         KC_TAB,  KC_Q,     KC_W,    KC_F,    KC_P,    KC_B,    SE_ARNG,    KC_J,      KC_L,    KC_U,    KC_Y,     SE_SCLN,  SE_SLSH,
         KC_CAPS, KC_A,     KC_R,    KC_S,    KC_T,    KC_G,    SE_ADIA,    KC_M,      KC_N,    KC_E,    KC_I,     KC_O,     SE_QUOT,  KC_ENT,
@@ -46,7 +46,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL, KC_LGUI,  KC_LALT,                            KC_SPC,                             KC_RALT,  MO(_FN1), MO(_FN2), MO(_FN3)),
 
     [_FN1] = LAYOUT_iso_62(
-        SE_ACUT, KC_BRID, KC_BRIU, KC_NO,   KC_NO,    _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,
+        SE_ACUT, KC_BRID, KC_BRIU, _______, _______,  _______, _______, KC_MPRV, KC_MPLY, KC_MNXT, KC_MUTE,  KC_VOLD,  KC_VOLU,  _______,
         _______, _______, _______, _______, _______,  _______, _______, _______, KC_APP,  KC_SCRL, KC_INS,   KC_PGUP,  KC_HOME,
         _______, _______, _______, _______, _______,  _______, _______, _______, KC_UP,   KC_PSCR, KC_PGDN,  KC_END,   _______,  _______,
         _______, _______, _______, _______, _______,  _______, _______, NK_TOGG, KC_LEFT, KC_DOWN, KC_RIGHT, KC_DEL,             _______,
