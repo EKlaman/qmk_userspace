@@ -31,11 +31,17 @@ enum layers {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+/*
+1 2 3 4 5 6 7 8 9 0 + ' | 1 2 3 4 5 6 7 8 9 0 + '
+q w f p b j l u y ö å ~ |  q w f p b j l u y ö å ~
+a r s t g m n e i o ä ' |   a r s t g m n e i o ä '
+z x c d v < k h , . -   |  z x c d v < k h , . -
+*/
     [SWOLEMAKDH_BASE] = LAYOUT_iso_62(
-        KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,       SE_EQL,    KC_7,    KC_8,    KC_9,     KC_0,     SE_MINS,  KC_BSPC,
-        KC_TAB,  KC_Q,     KC_W,    KC_F,    KC_P,    KC_B,    SE_ARNG,    KC_J,      KC_L,    KC_U,    KC_Y,     SE_SCLN,  SE_SLSH,
-        KC_CAPS, KC_A,     KC_R,    KC_S,    KC_T,    KC_G,    SE_ADIA,    KC_M,      KC_N,    KC_E,    KC_I,     KC_O,     SE_QUOT,  KC_ENT,
-        KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_D,    KC_V,    SE_ODIA,    SE_BSLS,   KC_K,    KC_H,    SE_COMM,  SE_DOT,             KC_RSFT,
+        KC_ESC,  KC_1,     KC_2,    KC_3,    KC_4,    KC_5,    KC_6,       KC_7,      KC_8,    KC_9,    KC_0,     SE_PLUS,  SE_ACUT,  KC_BSPC,
+        KC_TAB,  KC_Q,     KC_W,    KC_F,    KC_P,    KC_B,    KC_J,       KC_L,      KC_U,    KC_Y,    SE_ODIA,  SE_ARNG,  SE_DIAE,
+        KC_CAPS, KC_A,     KC_R,    KC_S,    KC_T,    KC_G,    KC_M,       KC_N,      KC_E,    KC_I,    KC_O,     SE_ADIA,  SE_QUOT,  KC_ENT,
+        KC_LSFT, KC_Z,     KC_X,    KC_C,    KC_D,    KC_V,    KC_NUBS,    KC_K,      KC_H,    SE_COMM, SE_DOT,   SE_MINS,            KC_RSFT,
         KC_LCTL, KC_LGUI,  KC_LALT,                            KC_SPC,                                  KC_RALT,  MO(_FN1), MO(_FN2), TT(_FN3)),
 
     [WIN_BASE] = LAYOUT_iso_62(
