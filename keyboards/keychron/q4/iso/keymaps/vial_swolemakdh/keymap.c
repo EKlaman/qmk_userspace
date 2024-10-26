@@ -142,7 +142,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
             rgb_matrix_sethsv_noeeprom(0,255,rgb_matrix_config.hsv.v);
             break;
         case _FN2:
-            rgb_matrix_sethsv_noeeprom(86,255,rgb_matrix_config.hsv.v);
+            rgb_matrix_sethsv_noeeprom(86,200,rgb_matrix_config.hsv.v);
             break;
         case _FN3:
             rgb_matrix_sethsv_noeeprom(170,255,rgb_matrix_config.hsv.v);
