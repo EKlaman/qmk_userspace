@@ -10,3 +10,4 @@
 *.bin
 *.uf2
 *.vil
+qmk_userspace.code-workspace

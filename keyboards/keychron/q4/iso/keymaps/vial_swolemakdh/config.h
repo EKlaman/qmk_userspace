@@ -25,7 +25,8 @@
 #define FORCE_NKRO
 
 /* Set dynamic keymap layer counts to 5 */
-#define DYNAMIC_KEYMAP_LAYER_COUNT 5
+#undef DYNAMIC_KEYMAP_LAYER_COUNT
+#define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #define TAPPING_TERM 200
 #define TAPPING_TOGGLE 3
 
