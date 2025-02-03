@@ -27,6 +27,8 @@
 /* Set dynamic keymap layer counts to 5 */
 #undef DYNAMIC_KEYMAP_LAYER_COUNT
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
+#undef VIAL_TAP_DANCE_ENTRIES
+#define VIAL_TAP_DANCE_ENTRIES 32
 #define TAPPING_TERM 200
 #define TAPPING_TOGGLE 3
 
